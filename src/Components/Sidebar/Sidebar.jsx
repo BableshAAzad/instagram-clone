@@ -1,15 +1,28 @@
 import React from 'react'
 import "./Sidebar.css"
+import { IoReorderThree } from "react-icons/io5";
+import { mainu } from './SidebarConfig';
 
 function Sidebar() {
   return (
-    <div>
-      <div>
+    <div className='sticky top-0 h-[100vh] '>
+      <div className='flex flex-col justify-between h-full'>
         <div>
-          <img className='w-40' src="https://i.imgur.com/zqpwkLQ.png" alt="logo" srcset="" />
+          <div className='pt-10'>
+            <img className='w-40' src="https://i.imgur.com/zqpwkLQ.png" alt="logo" srcSet="" />
+          </div>
+          <div className='mt-10'>
+            {mainu.map((item) => {
+              return <div key={item.title} className='flex items-center mb-5 cursor-pointer text-lg'>
+                {item.icon}
+                <p>{item.title}</p>
+              </div>
+            })}
+          </div>
         </div>
-        <div>
-
+        <div className='flex items-center cursor-pointer pb-10'>
+          <IoReorderThree />
+          <p className='ml-5'>More</p>
         </div>
       </div>
     </div>

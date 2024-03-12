@@ -2,17 +2,20 @@ import React from 'react'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import { Route, Routes } from 'react-router-dom'
 import HomePage from '../HomePage/HomePage'
+import Profile from '../Profile/Profile'
 
 function Router() {
     return (
         <div>
             <div className='flex'>
-                <div>
+                <div className='w-[20%] border-l-slate-500'>
                     <Sidebar />
                 </div>
-                <div>
+                <div className='w-full'>
                     <Routes>
                         <Route path='/' element={<HomePage />} />
+                        <Route path='/username' element={<Profile />} />
+
                     </Routes>
                 </div>
             </div>

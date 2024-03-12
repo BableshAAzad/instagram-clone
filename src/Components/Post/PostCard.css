@@ -1,0 +1,31 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown .dots {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dropdown .dropdown-content {
+    position: absolute;
+    z-index: 1;
+}
+
+.dropdown .dropdown-content p {
+    display: block;
+    padding: 6px 12px;
+}
+
+.dropdown .dropdown:hover .dots {
+    background-color: white;
+}
+
+/* ************* */
+.commentInput{
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: .5rem .7rem;
+}

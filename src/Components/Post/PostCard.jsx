@@ -5,11 +5,13 @@ import { RiSendPlaneLine } from "react-icons/ri";
 import { FaRegComment } from "react-icons/fa";
 import "./PostCard.css"
 import CommentModel from '../Comment/CommentModel';
+import { useDisclosure } from '@chakra-ui/react';
 
 function PostCard() {
     let [showDropDown, setShowDropDown] = useState(false);
     let [isPostLiked, setIsPostLiked] = useState(false);
-    let [isSaved, setIsSaved] = useState(false)
+    let [isSaved, setIsSaved] = useState(false);
+    const { isOpen, onOpen, onClose } = useDisclosure()
     let handleClick = () => {
         setShowDropDown(!showDropDown)
     }
@@ -18,6 +20,9 @@ function PostCard() {
     }
     let handleSavePost = () => {
         setIsSaved(!isSaved)
+    }
+    let handleOpneCommentModel = () => {
+        onOpen()
     }
     return (
         <div >
@@ -44,7 +49,7 @@ function PostCard() {
                     <div className='flex items-center space-x-2'>
                         {isPostLiked ? <AiFillHeart className='text-2xl hover:opacity-50 cursor-pointer text-red-600' onClick={handlePostLike} /> :
                             <AiOutlineHeart className='text-2xl hover:opacity-50 cursor-pointer' onClick={handlePostLike} />}
-                        <FaRegComment className='text-xl hover:opacity-50 cursor-pointer' />
+                        <FaRegComment onClick={handleOpneCommentModel} className='text-xl hover:opacity-50 cursor-pointer' />
                         <RiSendPlaneLine className='text-xl hover:opacity-50 cursor-pointer' />
                     </div>
                     <div>
@@ -58,12 +63,13 @@ function PostCard() {
                 </div>
                 <div className='border border-t w-full'>
                     <div className='flex w-full items-center px-5'>
-                        <BsEmojiSmile/>
+                        <BsEmojiSmile />
                         <input type="text" className='commentInput' placeholder='Add a comment...' />
                     </div>
                 </div>
             </div>
-            <CommentModel/>
+            <CommentModel handlePostLike={handlePostLike} onClose={onClose} isOpen={isOpen}
+                handleSavePost={handleSavePost} isPostLiked={isPostLiked} isSaved={isSaved} />
         </div>
     )
 }

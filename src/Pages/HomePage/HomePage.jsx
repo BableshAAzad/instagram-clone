@@ -15,7 +15,7 @@ function HomePage() {
             {[1, 2, 3, 4].map((val) => <PostCard key={val} />)}
           </div>
         </div>
-        <div className='w-[35%]'>
+        <div className='w-[27%]'>
           <HomeRight />
         </div>
       </div>

@@ -3,7 +3,7 @@ import "./Progressbar.css"
 import { useState } from 'react'
 import { useEffect } from 'react';
 
-function Progressbar(index, activeIndex, duration) {
+function Progressbar({index, activeIndex, duration}) {
     let [progress, setProgress] = useState(0);
 
     useEffect(() => {
@@ -15,17 +15,18 @@ function Progressbar(index, activeIndex, duration) {
                 return preProgress;
             })
         }, duration / 100)
-        return () => { clearInterval(interval) }
+        return () => clearInterval(interval);
     }, [duration, activeIndex])
 
     useEffect(() => {
         setProgress(0)
     }, [activeIndex])
 
-    let isActive = index === activeIndex;
+    let isActive = (index === activeIndex);
+    console.log(index)
     return (
-        <div className={`progess-bar-container ${isActive ? "active" : ""} `}>
-            <div className={`${isActive ? 'progess-bar' : ''}`} style={{ width: `${progress}%` }}>
+        <div className={`progress-bar-container ${isActive ? "active" : ""} `}>
+            <div className={`${isActive ? "progress-bar" : ""}`} style={{ width: `${progress}%` }}>
 
             </div>
         </div>

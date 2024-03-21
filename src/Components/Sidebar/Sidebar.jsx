@@ -3,17 +3,21 @@ import "./Sidebar.css"
 import { IoReorderThreeOutline } from "react-icons/io5";
 import { mainu } from './SidebarConfig';
 import { useNavigate } from 'react-router-dom';
+import CreatePostModal from '../../Components/Post/CreatePostModal'
+import { useDisclosure } from '@chakra-ui/react'
 
 function Sidebar() {
   let [activeTab, setActiveTab] = useState("");
   let navigate = useNavigate();
+  let { isOpen, onOpen, onClose } = useDisclosure()
   let handleTabClick = (title) => {
     setActiveTab(title);
     if (title === "Profile")
       navigate("/username")
     else if (title === "Home")
       navigate('/')
-
+    else if (title === "Create")
+      onOpen()
   }
   return (
     <div className='sticky top-0 h-[100vh] '>
@@ -36,6 +40,7 @@ function Sidebar() {
           <p className='ml-5'>More</p>
         </div>
       </div>
+      <CreatePostModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
     </div>
   )
 }
